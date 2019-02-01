@@ -57,7 +57,11 @@ class ProductController extends Controller
         request()->validate([
             'name' => 'required',
             'detail' => 'required',
-        ]);
+        ],
+      [
+        'name.required' => 'Introduzca un nombre.',
+        'detail.required' => 'Introduzca un detalle del producto.'
+      ]);
 
 
         Product::create($request->all());
@@ -104,7 +108,11 @@ class ProductController extends Controller
          request()->validate([
             'name' => 'required',
             'detail' => 'required',
-        ]);
+        ],
+      [
+        'name.required', 'Introduzca un nombre.',
+        'detail.required', 'Introduzca un detalle del producto.'
+      ]);
 
 
         $product->update($request->all());

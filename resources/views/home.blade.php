@@ -14,7 +14,13 @@
                         </div>
                     @endif
 
-                    You are logged in!
+                    @if (Cookie::get('name') != null)
+                     Aqui aparecera la coockie:
+                     {{ Cookie::get('name')}}
+                     @else
+                         {{'Perdí la coockie'}}
+                   @endif
+
                 </div>
             </div>
         </div>

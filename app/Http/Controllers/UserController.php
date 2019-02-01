@@ -10,6 +10,7 @@ use App\User;
 use Spatie\Permission\Models\Role;
 use DB;
 use Hash;
+use Auth;
 
 
 class UserController extends Controller
@@ -31,8 +32,11 @@ class UserController extends Controller
     public function index(Request $request)
     {
         $data = User::orderBy('id','DESC')->paginate(5);
-        return view('users.index',compact('data'))
-            ->with('i', ($request->input('page', 1) - 1) * 5);
+
+
+        $cookie = cookie('name',Auth::user()->name, 600);
+        return response(view('users.index',compact('data'))
+            ->with('i', ($request->input('page', 1) - 1) * 5))->cookie($cookie);
     }
 
 
@@ -61,7 +65,13 @@ class UserController extends Controller
             'email' => 'required|email|unique:users,email',
             'password' => 'required|same:confirm-password',
             'roles' => 'required'
-        ]);
+        ],
+      [
+        'name.required' => 'Introduzca un nombre de usuario.',
+        'email.required' => 'Introduzca un correo valido.',
+        'password.required' => 'Introduzca una contraseña valida.',
+        'roles.required' => 'Introduzca un rol.'
+      ]);
 
 
         $input = $request->all();
@@ -121,7 +131,13 @@ class UserController extends Controller
             'email' => 'required|email|unique:users,email,'.$id,
             'password' => 'same:confirm-password',
             'roles' => 'required'
-        ]);
+        ],
+        [
+            'name.required' => 'Introduzca un nombre.',
+            'email.required' => 'Introduzca un email valido.',
+            'password.required' => 'Introduzca una contraseña valida.',
+            'roles.required' => 'Introduzca un rol'
+      ]);
 
 
         $input = $request->all();
