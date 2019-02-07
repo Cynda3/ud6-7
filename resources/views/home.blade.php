@@ -12,11 +12,13 @@
                         <div class="alert alert-success" role="alert">
                             {{ session('status') }}
                         </div>
-                    @endif
-
-                    @if (Cookie::get('name') != null)
-                     Aqui aparecera la coockie:
-                     {{ Cookie::get('name')}}
+                    @endif  
+                    @if (Cookie::get('role') != null)
+                        @if(!empty(Auth::user()->getRoleNames()))
+                            @foreach(Auth::user()->getRoleNames() as $v)
+                                <label class="badge badge-success">{{ $v }}</label>
+                            @endforeach
+                        @endif
                      @else
                          {{'Perdí la coockie'}}
                    @endif

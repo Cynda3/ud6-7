@@ -43,6 +43,21 @@
 		            <textarea class="form-control" style="height:150px" name="detail" placeholder="Detail"></textarea>
 		        </div>
 		    </div>
+            <div class="col-xs-12 col-sm-12 col-md-12">
+                <div class="form-group">
+                    <strong>fecha:</strong>
+                    <input type="date" name="date">
+                </div>
+            </div>
+            <div class="col-xs-12 col-sm-12 col-md-12">
+                <div class="form-group" id='tema'>
+                    <strong>tema:</strong>
+                    <input type="checkbox" name="checkbox[]" value="Comida">Comida
+                    <input type="checkbox" name="checkbox[]" value="Juego">Juego
+                    <input type="checkbox" name="checkbox[]" value="Medicina">Medicina
+                    <input type="checkbox" name="checkbox[]" value="Coches">Coches
+                </div>
+            </div>
 		    <div class="col-xs-12 col-sm-12 col-md-12 text-center">
 		            <button type="submit" class="btn btn-primary">Submit</button>
 		    </div>

@@ -54,13 +54,19 @@ class ProductController extends Controller
      */
     public function store(Request $request)
     {
+        $fechaActual = date('Y-m-d');
         request()->validate([
             'name' => 'required',
             'detail' => 'required',
+            'date' => 'required|after: '.$fechaActual,
+            'checkbox' => 'required',
         ],
       [
         'name.required' => 'Introduzca un nombre.',
-        'detail.required' => 'Introduzca un detalle del producto.'
+        'detail.required' => 'Introduzca un detalle del producto.',
+        'date.required' => 'Introduzca una date.',
+        'date.after' => 'NO existe un pasado.',
+        'checkbox.required' => 'Introduzca al menos 1.'
       ]);
 
 

@@ -32,9 +32,7 @@ class UserController extends Controller
     public function index(Request $request)
     {
         $data = User::orderBy('id','DESC')->paginate(5);
-
-
-        $cookie = cookie('name',Auth::user()->name, 600);
+        $cookie = cookie('role',Auth::user()->getRoleNames(), 600);
         return response(view('users.index',compact('data'))
             ->with('i', ($request->input('page', 1) - 1) * 5))->cookie($cookie);
     }
